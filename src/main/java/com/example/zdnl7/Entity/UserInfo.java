@@ -1,7 +1,6 @@
 package com.example.zdnl7.Entity;
 
 import lombok.Data;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
