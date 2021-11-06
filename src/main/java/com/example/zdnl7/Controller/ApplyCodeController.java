@@ -21,7 +21,7 @@ public class ApplyCodeController {
     ApplyCodeService applyCodeService;
 
     @ResponseBody
-    @PostMapping("applyCode")
+    @PostMapping("apply_code")
     public ApplyCodeResult doApplyCode(@RequestBody Map<String, Object> requestParam) {
         ApplyCodeResult applyCodeResult = new ApplyCodeResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);

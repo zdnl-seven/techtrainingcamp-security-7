@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ApplyCodeResult {
-    int Code;
+    int code;
     String message;
     ApplyCodeData data;
 }

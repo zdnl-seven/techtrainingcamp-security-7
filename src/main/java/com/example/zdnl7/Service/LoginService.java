@@ -40,7 +40,7 @@ public class LoginService {
             UserInfo user = userInfo.findByName(username);
             if (user==null) {
                 result.setMessage("用户不存在");
-            } else if (user.getPassword().equals(password)==false) {
+            } else if (!user.getPassword().equals(password)) {
                 result.setMessage("密码错误");
                 //TODO:更新该ip/deviceID输入密码错误次数
             } else {
@@ -76,7 +76,7 @@ public class LoginService {
             UserInfo user = userInfo.findByPhone(phoneNumber);
             if (user==null) {
                 result.setMessage("手机号未注册");
-            } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null||verifyCodeInfo.findByIpAndDeviceID(ip,deviceID).getVerifyCode().equals(verifyCode)==false) {
+            } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null|| !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
                 result.setMessage("验证码错误");
             } else {
                 result.setCode(1);
