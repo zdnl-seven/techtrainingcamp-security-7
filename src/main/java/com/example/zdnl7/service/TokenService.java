@@ -16,11 +16,14 @@ import java.util.UUID;
 @Slf4j
 public class TokenService {
 
-    @Autowired
     Cache<String, UserInfo> cacheMap;
 
-    @Autowired
     UserDao userDao;
+
+    public TokenService(@Autowired Cache<String, UserInfo> cacheMap, @Autowired UserDao userDao) {
+        this.cacheMap = cacheMap;
+        this.userDao = userDao;
+    }
 
     /**
      * 用户登录验证通过后(sso/帐密),生成token,记录用户已登录的状态
