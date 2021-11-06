@@ -97,61 +97,61 @@ components:
     LoginByNameRequest:
       type: object
       properties:
-        UserName:
+        user_name:
           type: string
-        Password:
+        password:
           type: string
-        Environment:
+        environment:
           $ref: "#/components/schemas/Environment"
     
     LoginByPhoneRequest:
       type: object
       properties:
-        PhoneNumber:
+        phone_number:
           type: string
-        VerifyCode:
+        verify_code:
           type: string
-        Environment:
+        environment:
           $ref: "#/components/schemas/Environment"
       
     LogoutRequest:
       type: object
       properties:
-        SessionId:
+        session_id:
           type: string
-        ActionType:
+        action_type:
           type: integer
-        Environment:
+        environment:
           $ref: "#/components/schemas/Environment"
 
     RegisterRequest:
       type: object
       properties:
-        UserName:
+        user_name:
           type: string
-        Password:
+        password:
           type: string
-        PhoneNumber:
+        phone_number:
           type: string
-        VerifyCode:
+        verify_code:
           type: string
-        Environment:
+        environment:
           $ref: "#/components/schemas/Environment"
     
     ApplyCodeRequest:
       type: object
       properties:
-        PhoneNumber:
+        phone_number:
           type: string
-        Environment:
+        environment:
           $ref: "#/components/schemas/Environment"
         
     Environment:
       type: object
       properties:
-        IP:
+        ip:
           type: string
-        DeviceId:
+        device_id:
           type: string
 
     QueryData:

@@ -13,7 +13,7 @@ public class ConstUtil {
 
     final public String PARAM_KEY_PHONE_NUMBER = "phone_number";
     final public String PARAM_KEY_ENVIRONMENT = "environment";
-    final public String PARAM_KEY_IP = "IP";
+    final public String PARAM_KEY_IP = "ip";
     final public String PARAM_KEY_DEVICE_ID = "device_id";
     final public String PARAM_KEY_USER_NAME = "username";
     final public String PARAM_KEY_PASSWORD = "password";
