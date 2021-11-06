@@ -3,7 +3,7 @@ package com.example.zdnl7.dao;
 import com.example.zdnl7.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserInfoImpl extends JpaRepository<UserInfo,Long> {
+public interface UserDao extends JpaRepository<UserInfo,Long> {
     boolean existsByName(String name);
     boolean existsByPhone(String phoneNumber);
     UserInfo findByName(String username);

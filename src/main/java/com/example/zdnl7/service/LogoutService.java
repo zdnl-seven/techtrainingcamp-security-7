@@ -1,6 +1,6 @@
 package com.example.zdnl7.service;
 
-import com.example.zdnl7.dao.UserInfoImpl;
+import com.example.zdnl7.dao.UserDao;
 import com.example.zdnl7.entity.UserInfo;
 import com.example.zdnl7.model.LogoutResult;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 @Service
 public class LogoutService {
     @Resource
-    UserInfoImpl userInfo;
+    UserDao userInfo;
 
     public LogoutResult doLogout(String sessionID, int actionType, String ip, String deviceID) {
         LogoutResult result = new LogoutResult();

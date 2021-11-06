@@ -1,12 +1,12 @@
 package com.example.zdnl7.service;
 
-import com.example.zdnl7.dao.UserInfoImpl;
-import com.example.zdnl7.dao.VerifyCodeInfoImpl;
+import com.example.zdnl7.dao.UserDao;
+import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.UserInfo;
 import com.example.zdnl7.model.QueryData;
 import com.example.zdnl7.model.RegisterResult;
-import com.example.zdnl7.util.RandomUtil;
-import com.example.zdnl7.util.SecurityCheckUtil;
+import com.example.zdnl7.utils.RandomUtil;
+import com.example.zdnl7.utils.SecurityCheckUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,10 +18,10 @@ public class RegisterService {
     SecurityCheckUtil securityCheckUtil;
 
     @Resource
-    UserInfoImpl userInfo;
+    UserDao userInfo;
 
     @Resource
-    VerifyCodeInfoImpl verifyCodeInfo;
+    VerifyCodeDao verifyCodeInfo;
 
     @Resource
     RandomUtil randomUtil;

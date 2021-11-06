@@ -1,11 +1,11 @@
 package com.example.zdnl7.service;
 
-import com.example.zdnl7.dao.VerifyCodeInfoImpl;
+import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.VerifyCodeInfo;
 import com.example.zdnl7.model.ApplyCodeData;
 import com.example.zdnl7.model.ApplyCodeResult;
-import com.example.zdnl7.util.RandomUtil;
-import com.example.zdnl7.util.SecurityCheckUtil;
+import com.example.zdnl7.utils.RandomUtil;
+import com.example.zdnl7.utils.SecurityCheckUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class ApplyCodeService {
     RandomUtil randomUtil;
 
     @Resource
-    VerifyCodeInfoImpl verifyCodeInfo;
+    VerifyCodeDao verifyCodeInfo;
 
     public ApplyCodeResult doApplyCode(String phoneNumber,String ip,String deviceID) {
         int decisionType = securityCheckUtil.securityCheckApplyCode(phoneNumber,ip,deviceID);

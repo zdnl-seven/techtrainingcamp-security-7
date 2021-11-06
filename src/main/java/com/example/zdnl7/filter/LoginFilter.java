@@ -1,6 +1,6 @@
 package com.example.zdnl7.filter;
 
-import com.example.zdnl7.dao.UserInfoImpl;
+import com.example.zdnl7.dao.UserDao;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -12,14 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginFilter implements HandlerInterceptor {
     @Resource
-    UserInfoImpl userInfo;
+    UserDao userInfo;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-        if (false) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
 }

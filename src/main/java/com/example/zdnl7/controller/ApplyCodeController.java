@@ -2,7 +2,7 @@ package com.example.zdnl7.controller;
 
 import com.example.zdnl7.model.ApplyCodeResult;
 import com.example.zdnl7.service.ApplyCodeService;
-import com.example.zdnl7.util.ConstUtil;
+import com.example.zdnl7.utils.ConstUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

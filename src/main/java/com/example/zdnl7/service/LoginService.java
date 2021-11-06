@@ -1,12 +1,13 @@
 package com.example.zdnl7.service;
 
-import com.example.zdnl7.dao.UserInfoImpl;
-import com.example.zdnl7.dao.VerifyCodeInfoImpl;
+import com.example.zdnl7.dao.UserDao;
+import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.UserInfo;
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.model.QueryData;
-import com.example.zdnl7.util.RandomUtil;
-import com.example.zdnl7.util.SecurityCheckUtil;
+import com.example.zdnl7.utils.RandomUtil;
+import com.example.zdnl7.utils.SecurityCheckUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,13 +19,16 @@ public class LoginService {
     SecurityCheckUtil securityCheckUtil;
 
     @Resource
-    UserInfoImpl userInfo;
+    UserDao userInfo;
 
     @Resource
     RandomUtil randomUtil;
 
     @Resource
-    VerifyCodeInfoImpl verifyCodeInfo;
+    VerifyCodeDao verifyCodeInfo;
+
+    @Resource
+    TokenService tokenService;
 
     public LoginResult doLoginByUserName(String username, String password, String ip, String deviceID) {
         LoginResult result = new LoginResult();
@@ -40,22 +44,21 @@ public class LoginService {
             UserInfo user = userInfo.findByName(username);
             if (user==null) {
                 result.setMessage("用户不存在");
-            } else if (user.getPassword().equals(password)==false) {
+            } else if (!user.getPassword().equals(password)) {
                 result.setMessage("密码错误");
                 //TODO:更新该ip/deviceID输入密码错误次数
             } else {
                 result.setCode(1);
                 result.setMessage("登陆成功");
-                String sessionID = randomUtil.creatSessionID();
-                data.setSessionId(sessionID);
-
+                String token = tokenService.generateToken(username);
+                data.setSessionId(token);
                 Date timeNow = new Date();
                 Date expireTime = new Date(timeNow.getTime() + 15*24*60*60*1000);
                 data.setExpireTime(expireTime);
 
                 user.setLatestIp(ip);
                 user.setLatestDevice(deviceID);
-                user.setSessionID(sessionID);
+                user.setSessionID(token);
                 userInfo.save(user);
             }
         }
@@ -81,8 +84,7 @@ public class LoginService {
             } else {
                 result.setCode(1);
                 result.setMessage("登陆成功");
-                String sessionID = randomUtil.creatSessionID();
-                data.setSessionId(sessionID);
+
 
                 Date timeNow = new Date();
                 Date expireTime = new Date(timeNow.getTime() + 15*24*60*60*1000);
@@ -90,7 +92,6 @@ public class LoginService {
 
                 user.setLatestIp(ip);
                 user.setLatestDevice(deviceID);
-                user.setSessionID(sessionID);
                 userInfo.save(user);
             }
         }

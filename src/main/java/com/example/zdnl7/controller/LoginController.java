@@ -2,9 +2,10 @@ package com.example.zdnl7.controller;
 
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.service.LoginService;
-import com.example.zdnl7.util.ConstUtil;
+import com.example.zdnl7.utils.ConstUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class LoginController {
     LoginService loginService;
 
     @ResponseBody
-    @GetMapping("login_by_username")
+    @PostMapping("login_by_username")
     public LoginResult doLoginByUserName(@RequestBody Map<String, Object> requestParam) {
         LoginResult result = new LoginResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
@@ -34,7 +35,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @GetMapping("login_by_phone")
+    @PostMapping("login_by_phone")
     public LoginResult doLoginByPhone(@RequestBody Map<String, Object> requestParam) {
         LoginResult result = new LoginResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);

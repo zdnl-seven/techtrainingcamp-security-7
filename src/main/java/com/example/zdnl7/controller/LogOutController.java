@@ -2,7 +2,7 @@ package com.example.zdnl7.controller;
 
 import com.example.zdnl7.model.LogoutResult;
 import com.example.zdnl7.service.LogoutService;
-import com.example.zdnl7.util.ConstUtil;
+import com.example.zdnl7.utils.ConstUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
