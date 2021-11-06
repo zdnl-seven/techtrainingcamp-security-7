@@ -7,7 +7,6 @@ import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.model.QueryData;
 import com.example.zdnl7.utils.RandomUtil;
 import com.example.zdnl7.utils.SecurityCheckUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,7 +27,7 @@ public class LoginService {
     VerifyCodeDao verifyCodeInfo;
 
     @Resource
-    TokenService tokenService;
+    com.example.zdnl7.service.TokenService tokenService;
 
     public LoginResult doLoginByUserName(String username, String password, String ip, String deviceID) {
         LoginResult result = new LoginResult();
