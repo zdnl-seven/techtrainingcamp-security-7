@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Controller
 public class LogOutController {
-    @Resource
+//    @Resource
     ConstUtil constUtil;
 
     @Resource
