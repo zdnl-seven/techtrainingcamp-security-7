@@ -27,7 +27,7 @@ public class LoginService {
     VerifyCodeDao verifyCodeInfo;
 
     @Resource
-    com.example.zdnl7.service.TokenService tokenService;
+    TokenService tokenService;
 
     public LoginResult doLoginByUserName(String username, String password, String ip, String deviceID) {
         LoginResult result = new LoginResult();
