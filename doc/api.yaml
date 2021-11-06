@@ -3,7 +3,7 @@ info:
   title: zdnl
   version: '1.0'
 servers:
-  - url: localhost:8082
+  - url: http://localhost:8082
 paths:
   /login_username:
     post:
@@ -97,61 +97,61 @@ components:
     LoginByNameRequest:
       type: object
       properties:
-        user_name:
+        UserName:
           type: string
-        password:
+        Password:
           type: string
-        environment:
+        Environment:
           $ref: "#/components/schemas/Environment"
     
     LoginByPhoneRequest:
       type: object
       properties:
-        phone_number:
+        PhoneNumber:
           type: string
-        verify_code:
+        VerifyCode:
           type: string
-        environment:
+        Environment:
           $ref: "#/components/schemas/Environment"
       
     LogoutRequest:
       type: object
       properties:
-        session_id:
+        SessionId:
           type: string
-        action_type:
+        ActionType:
           type: integer
-        environment:
+        Environment:
           $ref: "#/components/schemas/Environment"
 
     RegisterRequest:
       type: object
       properties:
-        user_name:
+        UserName:
           type: string
-        password:
+        Password:
           type: string
-        phone_number:
+        PhoneNumber:
           type: string
-        verify_code:
+        VerifyCode:
           type: string
-        environment:
+        Environment:
           $ref: "#/components/schemas/Environment"
     
     ApplyCodeRequest:
       type: object
       properties:
-        phone_number:
+        PhoneNumber:
           type: string
-        environment:
+        Environment:
           $ref: "#/components/schemas/Environment"
         
     Environment:
       type: object
       properties:
-        ip:
+        IP:
           type: string
-        device_id:
+        DeviceId:
           type: string
 
     QueryData:
