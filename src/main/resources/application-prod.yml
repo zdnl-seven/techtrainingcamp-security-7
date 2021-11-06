@@ -1,6 +1,7 @@
 spring:
   datasource:
     url: jdbc:mysql://8.136.13.232:3306/zdnl?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://127.0.0.1:3306/zdnl?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: root
     password: 209243
     hikari:

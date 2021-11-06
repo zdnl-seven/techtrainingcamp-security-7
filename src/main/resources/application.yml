@@ -3,5 +3,5 @@ server:
 
 spring:
   profiles:
-    active: prod
+    active: local
 
