@@ -20,7 +20,7 @@ public class LoginController {
     LoginService loginService;
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_LOGIN_USER_NAME)
+    @GetMapping("login_username")
     public LoginResult doLoginByUserName(@RequestBody Map requestParam) {
         LoginResult result = new LoginResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
@@ -34,7 +34,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_LOGIN_PHONE)
+    @GetMapping("login_phone")
     public LoginResult doLoginByPhone(@RequestBody Map requestParam) {
         LoginResult result = new LoginResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);

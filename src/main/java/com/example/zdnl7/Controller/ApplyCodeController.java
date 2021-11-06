@@ -20,7 +20,7 @@ public class ApplyCodeController {
     ApplyCodeService applyCodeService;
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_APPLY_CODE)
+    @GetMapping("applyCode")
     public ApplyCodeResult doApplyCode(@RequestBody Map requestParam) {
         ApplyCodeResult applyCodeResult = new ApplyCodeResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);

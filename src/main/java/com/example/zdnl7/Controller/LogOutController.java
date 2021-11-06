@@ -20,7 +20,7 @@ public class LogOutController {
     LogoutService logoutService;
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_LOGOUT)
+    @GetMapping("logout")
     public LogoutResult doLogout(@RequestBody Map requestParam) {
         LogoutResult result = new LogoutResult();
         String sessionID = (String) requestParam.get(constUtil.PARAM_KEY_SESSION_ID);

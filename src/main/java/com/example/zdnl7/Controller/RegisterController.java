@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
 import javax.annotation.Resource;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ public class RegisterController {
     RegisterService registerService;
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_REGISTER)
+    @GetMapping("register")
     public RegisterResult doRegister(@RequestBody Map requestParam) {
         RegisterResult result = new RegisterResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
