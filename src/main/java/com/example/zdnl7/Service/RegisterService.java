@@ -3,7 +3,6 @@ package com.example.zdnl7.Service;
 import com.example.zdnl7.Dao.UserInfoImpl;
 import com.example.zdnl7.Dao.VerifyCodeInfoImpl;
 import com.example.zdnl7.Entity.UserInfo;
-import com.example.zdnl7.Entity.VerifyCodeInfo;
 import com.example.zdnl7.Model.QueryData;
 import com.example.zdnl7.Model.RegisterResult;
 import com.example.zdnl7.Util.RandomUtil;

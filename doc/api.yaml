@@ -1,0 +1,217 @@
+openapi: '3.0.2'
+info:
+  title: zdnl
+  version: '1.0'
+servers:
+  - url: localhost:8082
+paths:
+  /login_username:
+    post:
+      summary: 使用用户名登录
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginByNameRequest'
+      responses:
+        '200':
+          description: 正常运行
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+    
+  /login_phone:
+    post:
+      summary: 使用手机号登录
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginByPhoneRequest'
+      responses:
+        '200':
+          description: 正常运行
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  /logout:
+    post:
+      summary: 登出
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+      responses:
+        '200':
+          description: 正常运行
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutResponse'
+    
+  /register:
+    post:
+      summary: 注册
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: 正常运行
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+    
+  /apply_code:
+      post:
+        summary: 获取验证码
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplyCodeRequest'
+        responses:
+          '200':
+            description: 正常运行
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApplyCodeResponse'
+
+
+
+components:
+  schemas:
+    LoginByNameRequest:
+      type: object
+      properties:
+        UserName:
+          type: string
+        Password:
+          type: string
+        Environment:
+          $ref: "#/components/schemas/Environment"
+    
+    LoginByPhoneRequest:
+      type: object
+      properties:
+        PhoneNumber:
+          type: string
+        VerifyCode:
+          type: string
+        Environment:
+          $ref: "#/components/schemas/Environment"
+      
+    LogoutRequest:
+      type: object
+      properties:
+        SessionId:
+          type: string
+        ActionType:
+          type: integer
+        Environment:
+          $ref: "#/components/schemas/Environment"
+
+    RegisterRequest:
+      type: object
+      properties:
+        UserName:
+          type: string
+        Password:
+          type: string
+        PhoneNumber:
+          type: string
+        VerifyCode:
+          type: string
+        Environment:
+          $ref: "#/components/schemas/Environment"
+    
+    ApplyCodeRequest:
+      type: object
+      properties:
+        PhoneNumber:
+          type: string
+        Environment:
+          $ref: "#/components/schemas/Environment"
+        
+    Environment:
+      type: object
+      properties:
+        IP:
+          type: string
+        DeviceId:
+          type: string
+
+    QueryData:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        expireTime:
+          type: string
+        decisonType:
+          type: integer
+
+    ApplyCodeData:
+      type: object
+      properties:
+        applyCode:
+          type: string
+        expireTime:
+          type: string
+        decisonType:
+          type: integer
+
+    LoginResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref:  "#/components/schemas/QueryData"
+    
+    LogoutResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+
+    RegisterResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        sessionId:
+          type: string
+        data:
+          $ref:  "#/components/schemas/QueryData"
+    
+    ApplyCodeResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref:  "#/components/schemas/ApplyCodeData"
+    
+

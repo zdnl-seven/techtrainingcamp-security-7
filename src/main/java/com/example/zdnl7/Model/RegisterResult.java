@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RegisterResult {
-    int Code;
+    int code;
     String message;
     String sessionID;
     QueryData data;

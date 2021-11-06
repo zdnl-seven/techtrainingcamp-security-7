@@ -4,12 +4,9 @@ import com.example.zdnl7.Model.RegisterResult;
 import com.example.zdnl7.Service.RegisterService;
 import com.example.zdnl7.Util.ConstUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
 
 import javax.annotation.Resource;
 import java.util.Map;
