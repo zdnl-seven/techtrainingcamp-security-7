@@ -23,7 +23,7 @@ public class ApplyCodeController {
     @ResponseBody
     @PostMapping("applyCode")
     public ApplyCodeResult doApplyCode(@RequestBody Map<String, Object> requestParam) {
-        ApplyCodeResult applyCodeResult = new ApplyCodeResult();
+        ApplyCodeResult applyCodeResult;
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);
         Map<String, String> environment = (Map<String, String>) requestParam.get(constUtil.PARAM_KEY_ENVIRONMENT);
         String ip = environment.get(constUtil.PARAM_KEY_IP);

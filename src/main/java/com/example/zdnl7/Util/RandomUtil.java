@@ -8,12 +8,14 @@ import java.util.Random;
 @Component
 public class RandomUtil {
     public String creatVerifyCode() {
-        int result=0;
-        Random r = new Random(System.currentTimeMillis());
-        for (int cnt =1;cnt<=6;cnt++) {
-            result=result*10+r.nextInt()%10;
+        StringBuilder numStr = new StringBuilder();
+        int num;
+        for (int i = 0; i < 6; i++) {
+            // Math.random() 随机出0-1之间的实数，返回值是一个double 类型的
+            num = (int) (Math.random() * 10);
+            numStr.append(String.valueOf(num));
         }
-        return String.valueOf(result);
+        return numStr.toString();
     }
 
     public String creatSessionID() {
