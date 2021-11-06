@@ -20,8 +20,8 @@ public class LoginController {
     LoginService loginService;
 
     @ResponseBody
-    @GetMapping(constUtil.REQUEST_PATH_LOGIN)
-    public LoginResult doLogin(@RequestBody Map requestParam) {
+    @GetMapping(constUtil.REQUEST_PATH_LOGIN_USER_NAME)
+    public LoginResult doLoginByUserName(@RequestBody Map requestParam) {
         LoginResult result = new LoginResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
         String password = (String) requestParam.get(constUtil.PARAM_KEY_PASSWORD);
@@ -29,7 +29,21 @@ public class LoginController {
         String ip = environment.get(constUtil.PARAM_KEY_IP);
         String deviceID = environment.get(constUtil.PARAM_KEY_DEVICE_ID);
 
-        result = loginService.doLogin(username,password,ip,deviceID);
+        result = loginService.doLoginByUserName(username,password,ip,deviceID);
+        return result;
+    }
+
+    @ResponseBody
+    @GetMapping(constUtil.REQUEST_PATH_LOGIN_PHONE)
+    public LoginResult doLoginByPhone(@RequestBody Map requestParam) {
+        LoginResult result = new LoginResult();
+        String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);
+        String verifyCode = (String) requestParam.get(constUtil.PARAM_KEY_VERIFY_CODE);
+        Map<String,String> environment = (Map<String, String>) requestParam.get(constUtil.PARAM_KEY_ENVIRONMENT);
+        String ip = environment.get(constUtil.PARAM_KEY_IP);
+        String deviceID = environment.get(constUtil.PARAM_KEY_DEVICE_ID);
+
+        result = loginService.doLoginByPhone(phoneNumber,verifyCode,ip,deviceID);
         return result;
     }
 }

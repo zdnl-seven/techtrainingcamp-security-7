@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 public class ConstUtil {
     final public String REQUEST_PATH_APPLY_CODE = "applyCode";
     final public String REQUEST_PATH_REGISTER = "register";
-    final public String REQUEST_PATH_LOGIN = "login";
+    final public String REQUEST_PATH_LOGIN_USER_NAME = "login_username";
+    final public String REQUEST_PATH_LOGIN_PHONE = "login_phone";
     final public String REQUEST_PATH_LOGOUT = "logout";
 
     final public String PARAM_KEY_PHONE_NUMBER = "PhoneNumber";
@@ -19,4 +20,6 @@ public class ConstUtil {
     final public String PARAM_KEY_VERIFY_CODE = "VerifyCode";
     final public String PARAM_KEY_SESSION_ID = "SessionId";
     final public String PARAM_KEY_ACTION_TYPE = "ActionType";
+
+    //TODO:service层魔法值
 }

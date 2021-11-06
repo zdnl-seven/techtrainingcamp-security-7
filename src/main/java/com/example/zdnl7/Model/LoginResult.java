@@ -1,7 +1,10 @@
 package com.example.zdnl7.Model;
 
+import lombok.Data;
+
+@Data
 public class LoginResult {
-    String username;
-    String password;
+    int code;
+    String message;
     QueryData data;
 }

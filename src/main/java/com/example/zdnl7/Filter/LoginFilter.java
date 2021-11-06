@@ -1,7 +1,6 @@
 package com.example.zdnl7.Filter;
 
 import com.example.zdnl7.Dao.UserInfoImpl;
-import com.example.zdnl7.Util.TokenUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 //filter学完没用过，忘光了QAQ
 @Component
 public class LoginFilter implements HandlerInterceptor {
-    @Resource
-    TokenUtil tokenUtil;
-
     @Resource
     UserInfoImpl userInfo;
 

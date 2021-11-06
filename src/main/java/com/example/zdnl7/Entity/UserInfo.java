@@ -14,12 +14,23 @@ public class UserInfo {
     @GeneratedValue
     Long id;
     String name;
-    String email;
+    String password;
     String phone;
-    int age;
-    Date birthday;
     Date createdAt;
+    String sessionID;
     String latestIp;
     String latestDevice;
-    boolean isDeleted;
+
+    public UserInfo(String name, String password, String phone, Date createdAt, String sessionID, String latestIp, String latestDevice, boolean isDeleted) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.createdAt = createdAt;
+        this.sessionID = sessionID;
+        this.latestIp = latestIp;
+        this.latestDevice = latestDevice;
+    }
+
+    public UserInfo() {
+    }
 }
