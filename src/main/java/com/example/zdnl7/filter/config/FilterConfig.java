@@ -2,6 +2,7 @@ package com.example.zdnl7.filter.config;
 
 import com.example.zdnl7.filter.LoginFilter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,5 +18,11 @@ public class FilterConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginFilter)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login/**","/apply_code/**","register/**","/index.html");
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOriginPatterns("http://localhost:*", "https://localhost:*");
     }
 }

@@ -3,7 +3,7 @@ info:
   title: zdnl
   version: '1.0'
 servers:
-  - url: localhost:8082
+  - url: http://localhost:8082
 paths:
   /login_username:
     post:
