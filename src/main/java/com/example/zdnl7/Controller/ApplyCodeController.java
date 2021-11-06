@@ -5,6 +5,7 @@ import com.example.zdnl7.Service.ApplyCodeService;
 import com.example.zdnl7.Util.ConstUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,15 +21,14 @@ public class ApplyCodeController {
     ApplyCodeService applyCodeService;
 
     @ResponseBody
-    @GetMapping("applyCode")
-    public ApplyCodeResult doApplyCode(@RequestBody Map requestParam) {
+    @PostMapping("applyCode")
+    public ApplyCodeResult doApplyCode(@RequestBody Map<String, Object> requestParam) {
         ApplyCodeResult applyCodeResult = new ApplyCodeResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);
-        Map<String,String> environment = (Map<String,String>) requestParam.get(constUtil.PARAM_KEY_ENVIRONMENT);
+        Map<String, String> environment = (Map<String, String>) requestParam.get(constUtil.PARAM_KEY_ENVIRONMENT);
         String ip = environment.get(constUtil.PARAM_KEY_IP);
         String deviceID = environment.get(constUtil.PARAM_KEY_DEVICE_ID);
-
-        applyCodeResult = applyCodeService.doApplyCode(phoneNumber,ip,deviceID);
+        applyCodeResult = applyCodeService.doApplyCode(phoneNumber, ip, deviceID);
         return applyCodeResult;
     }
 }

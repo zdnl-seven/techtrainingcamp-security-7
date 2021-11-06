@@ -27,13 +27,13 @@ public class RegisterService {
     @Resource
     RandomUtil randomUtil;
 
-    public RegisterResult doRegister(String username,String password,String phoneNumber,String verifyCode,String ip,String deviceID) {
+    public RegisterResult doRegister(String username, String password, String phoneNumber, String verifyCode, String ip, String deviceID) {
         RegisterResult result = new RegisterResult();
         QueryData data = new QueryData();
-        int decisionType = securityCheckUtil.securityCheckRegister(phoneNumber,ip,deviceID);
+        int decisionType = securityCheckUtil.securityCheckRegister(phoneNumber, ip, deviceID);
         data.setDecisionType(decisionType);
 
-        if (decisionType >=4) {
+        if (decisionType >= 4) {
             result.setMessage("安全验证不通过");
         } else if (decisionType == 2) {
             result.setMessage("操作过于频繁，请稍后再试");
@@ -42,7 +42,8 @@ public class RegisterService {
                 result.setMessage("用户名已存在");
             } else if (userInfo.existsByPhone(phoneNumber)) {
                 result.setMessage("该手机已注册");
-            } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null||verifyCodeInfo.findByIpAndDeviceID(ip,deviceID).getVerifyCode().equals(verifyCode)==false) {
+            } else if (verifyCodeInfo.findByIpAndDeviceID(ip, deviceID) == null ||
+                    !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
                 result.setMessage("验证码错误");
             } else {
                 result.setCode(1);
@@ -53,10 +54,10 @@ public class RegisterService {
                 data.setSessionId(sessionID);
 
                 Date timeNow = new Date();
-                Date expireTime = new Date(timeNow.getTime() + 15*24*60*60*1000);
+                Date expireTime = new Date(timeNow.getTime() + 15 * 24 * 60 * 60 * 1000);
                 data.setExpireTime(expireTime);
 
-                UserInfo ui = new UserInfo(username,password,phoneNumber,timeNow,sessionID,ip,deviceID,false);
+                UserInfo ui = new UserInfo(username, password, phoneNumber, timeNow, sessionID, ip, deviceID, false);
                 userInfo.save(ui);
             }
         }

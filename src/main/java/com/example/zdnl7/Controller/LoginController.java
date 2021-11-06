@@ -21,7 +21,7 @@ public class LoginController {
 
     @ResponseBody
     @GetMapping("login_username")
-    public LoginResult doLoginByUserName(@RequestBody Map requestParam) {
+    public LoginResult doLoginByUserName(@RequestBody Map<String, Object> requestParam) {
         LoginResult result = new LoginResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
         String password = (String) requestParam.get(constUtil.PARAM_KEY_PASSWORD);
@@ -35,7 +35,7 @@ public class LoginController {
 
     @ResponseBody
     @GetMapping("login_phone")
-    public LoginResult doLoginByPhone(@RequestBody Map requestParam) {
+    public LoginResult doLoginByPhone(@RequestBody Map<String, Object> requestParam) {
         LoginResult result = new LoginResult();
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);
         String verifyCode = (String) requestParam.get(constUtil.PARAM_KEY_VERIFY_CODE);

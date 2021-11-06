@@ -25,7 +25,6 @@ class Zdnl7ApplicationTests {
     @Test
     void generateTables(){
 
-
     }
 
 }

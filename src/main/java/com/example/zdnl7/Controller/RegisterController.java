@@ -5,6 +5,7 @@ import com.example.zdnl7.Service.RegisterService;
 import com.example.zdnl7.Util.ConstUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,8 +23,9 @@ public class RegisterController {
     RegisterService registerService;
 
     @ResponseBody
-    @GetMapping("register")
-    public RegisterResult doRegister(@RequestBody Map requestParam) {
+    @PostMapping("/register")
+    public RegisterResult doRegister(@RequestBody Map<String, Object> requestParam) {
+        System.out.println("ddada");
         RegisterResult result = new RegisterResult();
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
         String password = (String) requestParam.get(constUtil.PARAM_KEY_PASSWORD);
