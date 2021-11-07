@@ -35,6 +35,8 @@ public class LoginService {
         int decisionType = securityCheckUtil.securityCheckLogin(ip, deviceID);
         data.setDecisionType(decisionType);
 
+
+        //蒲俊宋：我更新了当decisionType==1的情况
         if (decisionType == 3) {
             result.setMessage("安全验证不通过");
         } else if (decisionType == 2) {
@@ -48,7 +50,11 @@ public class LoginService {
                 //TODO:更新该ip/deviceID输入密码错误次数
             } else {
                 result.setCode(1);
-                result.setMessage("登陆成功");
+                if(decisionType==1) {
+                    result.setMessage("完成滑块验证后登陆成功");
+                } else {
+                    result.setMessage("登陆成功");
+                }
                 String token = tokenService.generateToken(username);
                 data.setSessionId(token);
                 Date timeNow = new Date();
