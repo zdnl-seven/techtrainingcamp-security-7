@@ -1,4 +1,4 @@
-package com.example.zdnl7.filter.config;
+package com.example.zdnl7.config.system;
 
 import com.example.zdnl7.filter.LoginFilter;
 import org.springframework.context.annotation.Configuration;

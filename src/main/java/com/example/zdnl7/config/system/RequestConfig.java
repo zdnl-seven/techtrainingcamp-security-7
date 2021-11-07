@@ -1,4 +1,4 @@
-package com.example.zdnl7.config;
+package com.example.zdnl7.config.system;
 
 import com.example.zdnl7.config.interceptors.ReqInterceptors;
 import org.springframework.beans.factory.annotation.Autowired;
