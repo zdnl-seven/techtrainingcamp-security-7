@@ -2,7 +2,7 @@ package com.example.zdnl7.config.interceptors;
 
 import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.entity.RequestInfo;
-import com.example.zdnl7.utils.ConstUtil;
+import com.example.zdnl7.utils.constants.ConstUtil;
 import org.checkerframework.common.aliasing.qual.LeakedToResult;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
