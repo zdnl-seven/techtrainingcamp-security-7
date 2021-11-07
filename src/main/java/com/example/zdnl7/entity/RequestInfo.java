@@ -17,4 +17,12 @@ public class RequestInfo {
     String ip;
     String device;
     Date previous10Time;
+
+    public RequestInfo(Long id, Long times, String ip, String device, Date previous10Time) {
+        this.id = id;
+        this.times = times;
+        this.ip = ip;
+        this.device = device;
+        this.previous10Time = previous10Time;
+    }
 }
