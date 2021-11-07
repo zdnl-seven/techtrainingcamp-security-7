@@ -22,7 +22,7 @@ public class RegisterController {
     @ResponseBody
     @PostMapping("/register")
     public RegisterResult doRegister(@RequestBody Map<String, Object> requestParam) {
-        RegisterResult result = new RegisterResult();
+        RegisterResult result;
         String username = (String) requestParam.get(constUtil.PARAM_KEY_USER_NAME);
         String password = (String) requestParam.get(constUtil.PARAM_KEY_PASSWORD);
         String phoneNumber = (String) requestParam.get(constUtil.PARAM_KEY_PHONE_NUMBER);

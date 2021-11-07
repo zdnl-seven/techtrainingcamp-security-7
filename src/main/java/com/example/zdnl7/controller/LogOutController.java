@@ -22,7 +22,7 @@ public class LogOutController {
     @ResponseBody
     @GetMapping("logout")
     public LogoutResult doLogout(@RequestBody Map<String, Object> requestParam) {
-        LogoutResult result = new LogoutResult();
+        LogoutResult result;
         String sessionID = (String) requestParam.get(constUtil.PARAM_KEY_SESSION_ID);
         int actionType = (Integer) requestParam.get(constUtil.PARAM_KEY_ACTION_TYPE);
         Map<String,String> environment = (Map<String,String>) requestParam.get(constUtil.PARAM_KEY_ENVIRONMENT);
