@@ -1,4 +1,4 @@
-package com.example.zdnl7.utils;
+package com.example.zdnl7.utils.constants;
 
 import org.springframework.stereotype.Component;
 

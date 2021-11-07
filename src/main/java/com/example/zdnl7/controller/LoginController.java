@@ -2,9 +2,8 @@ package com.example.zdnl7.controller;
 
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.service.LoginService;
-import com.example.zdnl7.utils.ConstUtil;
+import com.example.zdnl7.utils.constants.ConstUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
