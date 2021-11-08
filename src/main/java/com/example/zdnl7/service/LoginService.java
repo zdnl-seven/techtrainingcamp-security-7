@@ -90,13 +90,10 @@ public class LoginService {
             UserInfo user = userInfo.findByPhone(phoneNumber);
             if (user == null) {
                 result.setMessage("手机号未注册");
-<<<<<<< HEAD
             } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null|| !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
                 //效果等同于密码输入错误
                 ipInfoModifyUtil.Modify_Failed(ip);
-=======
             } else if (verifyCodeInfo.findByIpAndDeviceID(ip, deviceID) == null || !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
->>>>>>> 4a3067ca70e6e70f2708b438400b7993e3373fcb
                 result.setMessage("验证码错误");
             } else {
                 result.setCode(1);
