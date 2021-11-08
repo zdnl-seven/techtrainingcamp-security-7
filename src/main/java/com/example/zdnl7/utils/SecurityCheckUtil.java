@@ -15,9 +15,6 @@ public class SecurityCheckUtil {
 
     @Resource
     RequestDao requestInfo;
-    //TODO:当出现新的请求（即该ip第一次访问）的时候把这个请求丢尽Request表里
-    //TODO:登陆成功时清空Times（尝试次数）
-
     //TODO:更新Loginservice中的decisionType：当注册
     //不同方法对应的是不同接口的判断逻辑，可以看着群里md写，不好写或者写不了的就改就行
 
