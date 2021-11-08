@@ -43,14 +43,14 @@ public class LoginService {
             result.setMessage("操作过于频繁，请稍后再试");
         } else {
             UserInfo user = userInfo.findByName(username);
-            if (user==null) {
+            if (user == null) {
                 result.setMessage("用户不存在");
             } else if (!user.getPassword().equals(password)) {
                 result.setMessage("密码错误");
                 //TODO:更新该ip/deviceID输入密码错误次数
             } else {
                 result.setCode(1);
-                if(decisionType==1) {
+                if (decisionType == 1) {
                     result.setMessage("完成滑块验证后登陆成功");
                 } else {
                     result.setMessage("登陆成功");
@@ -58,7 +58,7 @@ public class LoginService {
                 String token = tokenService.generateToken(username);
                 data.setSessionId(token);
                 Date timeNow = new Date();
-                Date expireTime = new Date(timeNow.getTime() + 15*24*60*60*1000);
+                Date expireTime = new Date(timeNow.getTime() + 15 * 24 * 60 * 60 * 1000);
                 data.setExpireTime(expireTime);
 
                 user.setLatestIp(ip);
@@ -71,7 +71,7 @@ public class LoginService {
         return result;
     }
 
-    public LoginResult doLoginByPhone(String phoneNumber,String verifyCode,String ip,String deviceID) {
+    public LoginResult doLoginByPhone(String phoneNumber, String verifyCode, String ip, String deviceID) {
         LoginResult result = new LoginResult();
         QueryData data = new QueryData();
         int decisionType = securityCheckUtil.securityCheckLogin(ip, deviceID);
@@ -82,9 +82,9 @@ public class LoginService {
             result.setMessage("操作过于频繁，请稍后再试");
         } else {
             UserInfo user = userInfo.findByPhone(phoneNumber);
-            if (user==null) {
+            if (user == null) {
                 result.setMessage("手机号未注册");
-            } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null|| !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
+            } else if (verifyCodeInfo.findByIpAndDeviceID(ip, deviceID) == null || !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
                 result.setMessage("验证码错误");
             } else {
                 result.setCode(1);
@@ -92,7 +92,7 @@ public class LoginService {
 
 
                 Date timeNow = new Date();
-                Date expireTime = new Date(timeNow.getTime() + 15*24*60*60*1000);
+                Date expireTime = new Date(timeNow.getTime() + 15 * 24 * 60 * 60 * 1000);
                 data.setExpireTime(expireTime);
 
                 user.setLatestIp(ip);

@@ -97,9 +97,9 @@ public class CommonUtil {
      */
     public static JSONObject request2Json(HttpServletRequest request) {
         JSONObject requestJson = new JSONObject();
-        Enumeration paramNames = request.getParameterNames();
+        Enumeration<String> paramNames = request.getParameterNames();
         while (paramNames.hasMoreElements()) {
-            String paramName = (String) paramNames.nextElement();
+            String paramName = paramNames.nextElement();
             String[] pv = request.getParameterValues(paramName);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < pv.length; i++) {
