@@ -2,10 +2,12 @@ package com.example.zdnl7.utils;
 
 import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.entity.RequestInfo;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Date;
 
+@Component
 public class CreateRequestInfoUtil {
 
 
