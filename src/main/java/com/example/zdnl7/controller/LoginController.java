@@ -24,7 +24,7 @@ public class LoginController {
     LoginService loginService;
 
     @ResponseBody
-    @PostMapping("login_by_username")
+    @PostMapping("login/by_username")
     public LoginResult doLoginByUserName(@RequestBody JSONObject requestJson) {
 
         CommonUtil.hasAllRequired(requestJson, "username,password,environment");
@@ -38,7 +38,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @PostMapping("login_by_phone")
+    @PostMapping("login/by_phone")
     public LoginResult doLoginByPhone(@RequestBody JSONObject requestJson) {
 
         CommonUtil.hasAllRequired(requestJson, "phone_number,verify_code,environment");

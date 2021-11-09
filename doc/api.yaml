@@ -5,7 +5,7 @@ info:
 servers:
   - url: http://localhost:8082
 paths:
-  /login_username:
+  /login/by_username:
     post:
       summary: 使用用户名登录
       requestBody:
@@ -22,7 +22,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
     
-  /login_phone:
+  /login/by_phone:
     post:
       summary: 使用手机号登录
       requestBody:
@@ -97,7 +97,7 @@ components:
     LoginByNameRequest:
       type: object
       properties:
-        user_name:
+        username:
           type: string
         password:
           type: string
@@ -127,7 +127,7 @@ components:
     RegisterRequest:
       type: object
       properties:
-        user_name:
+        username:
           type: string
         password:
           type: string

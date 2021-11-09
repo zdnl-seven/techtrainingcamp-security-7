@@ -26,7 +26,9 @@ public class FilterConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        System.out.println("adding cors");
         registry.addMapping("/**")
-                .allowedOriginPatterns("http://localhost:*", "https://localhost:*");
+                .allowedOriginPatterns("http://localhost:*", "https://localhost:*",
+                        "http://127.0.0.1:*", "https://127.0.0.1:*");
     }
 }
