@@ -25,8 +25,7 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("login_by_username")
-    public LoginResult doLoginByUserName(@RequestBody JSONObject requestJson) {
-
+    public LoginResult doLoginByUserName(@RequestBody(required = false) JSONObject requestJson) {
         CommonUtil.hasAllRequired(requestJson, "username,password,environment");
         Map<String, String> environment = (Map<String, String>) requestJson.get("environment");
         String username = requestJson.getString("username");

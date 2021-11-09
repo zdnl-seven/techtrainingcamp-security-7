@@ -16,7 +16,8 @@ public class IpInfoModifyUtil {
     public boolean Modify_Success(String ip) {
         if(reqInfo.existsByIp(ip)==false)return false;
         RequestInfo Now_IP = reqInfo.findByIp(ip);
-        Now_IP.setTimes(0l);
+        long New_Tried = 0l;
+        Now_IP.setTimes(New_Tried);
         reqInfo.save(Now_IP);
         return true;
     }
