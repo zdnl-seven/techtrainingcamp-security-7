@@ -25,4 +25,8 @@ public class RequestInfo {
         this.device = device;
         this.previous10Time = previous10Time;
     }
+
+    public RequestInfo() {
+
+    }
 }

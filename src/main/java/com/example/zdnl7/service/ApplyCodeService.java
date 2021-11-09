@@ -1,9 +1,11 @@
 package com.example.zdnl7.service;
 
+import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.VerifyCodeInfo;
 import com.example.zdnl7.model.ApplyCodeData;
 import com.example.zdnl7.model.ApplyCodeResult;
+import com.example.zdnl7.utils.CreateRequestInfoUtil;
 import com.example.zdnl7.utils.RandomUtil;
 import com.example.zdnl7.utils.SecurityCheckUtil;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,17 @@ public class ApplyCodeService {
     @Resource
     VerifyCodeDao verifyCodeInfo;
 
+    @Resource
+    RequestDao reqInfo;
+
+    @Resource
+    CreateRequestInfoUtil createRequestInfoUtil;
+
     public ApplyCodeResult doApplyCode(String phoneNumber,String ip,String deviceID) {
+
+        if(reqInfo.existsByIp(ip)==false)createRequestInfoUtil.Create(ip,deviceID);
+
+
         int decisionType = securityCheckUtil.securityCheckApplyCode(phoneNumber,ip,deviceID);
         ApplyCodeResult result = new ApplyCodeResult();
         ApplyCodeData applyCodeData = new ApplyCodeData();

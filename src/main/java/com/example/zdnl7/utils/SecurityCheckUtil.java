@@ -24,6 +24,9 @@ public class SecurityCheckUtil {
         Date timeNow = new Date();
 
         RequestInfo nowReq = requestInfo.findByIp(ip);
+        if (nowReq == null) {
+            return 0;
+        }
         if (nowReq.getTimes() > 3) {
             return 3;
             //尝试次数>3，拒绝访问
@@ -39,6 +42,9 @@ public class SecurityCheckUtil {
 
         Date timeNow = new Date();
         RequestInfo nowReq = requestInfo.findByIp(ip);
+        if (nowReq == null) {
+            return 0;
+        }
         if (nowReq.getTimes() > 3) {
             return 4;
         } else if (nowReq.getTimes() >= 1 && timeNow.getTime() - nowReq.getPrevious10Time().getTime() <= 1000 * 60 * 5) {

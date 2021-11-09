@@ -1,10 +1,12 @@
 package com.example.zdnl7.service;
 
+import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.dao.UserDao;
 import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.UserInfo;
 import com.example.zdnl7.model.QueryData;
 import com.example.zdnl7.model.RegisterResult;
+import com.example.zdnl7.utils.CreateRequestInfoUtil;
 import com.example.zdnl7.utils.RandomUtil;
 import com.example.zdnl7.utils.SecurityCheckUtil;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,17 @@ public class RegisterService {
     @Resource
     RandomUtil randomUtil;
 
+    @Resource
+    RequestDao reqInfo;
+
+    @Resource
+    CreateRequestInfoUtil createRequestInfoUtil;
+
     public RegisterResult doRegister(String username, String password, String phoneNumber, String verifyCode, String ip, String deviceID) {
+
+
+        if(reqInfo.existsByIp(ip)==false)createRequestInfoUtil.Create(ip,deviceID);
+
         RegisterResult result = new RegisterResult();
         QueryData data = new QueryData();
         int decisionType = securityCheckUtil.securityCheckRegister(phoneNumber, ip, deviceID);

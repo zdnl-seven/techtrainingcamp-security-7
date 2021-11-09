@@ -1,10 +1,12 @@
 package com.example.zdnl7.service;
 
+import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.dao.UserDao;
 import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.UserInfo;
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.model.QueryData;
+import com.example.zdnl7.utils.CreateRequestInfoUtil;
 import com.example.zdnl7.utils.IpInfoModifyUtil;
 import com.example.zdnl7.utils.RandomUtil;
 import com.example.zdnl7.utils.SecurityCheckUtil;
@@ -33,7 +35,18 @@ public class LoginService {
     @Resource
     IpInfoModifyUtil ipInfoModifyUtil;
 
+    @Resource
+    RequestDao reqInfo;
+
+    @Resource
+    CreateRequestInfoUtil createRequestInfoUtil;
+
     public LoginResult doLoginByUserName(String username, String password, String ip, String deviceID) {
+
+
+        if(reqInfo.existsByIp(ip)==false)createRequestInfoUtil.Create(ip,deviceID);
+
+
         LoginResult result = new LoginResult();
         QueryData data = new QueryData();
         int decisionType = securityCheckUtil.securityCheckLogin(ip, deviceID);
