@@ -2,8 +2,10 @@ package com.example.zdnl7.utils;
 
 import com.example.zdnl7.dao.RequestDao;
 import com.example.zdnl7.dao.UserDao;
+import com.example.zdnl7.dao.VerifyCodeDao;
 import com.example.zdnl7.entity.RequestInfo;
 import com.example.zdnl7.entity.UserInfo;
+import com.example.zdnl7.entity.VerifyCodeInfo;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -15,6 +17,9 @@ public class SecurityCheckUtil {
 
     @Resource
     RequestDao requestInfo;
+
+    @Resource
+    VerifyCodeDao verifyCodeInfo;
     //TODO:更新Loginservice中的decisionType：当注册
     //不同方法对应的是不同接口的判断逻辑，可以看着群里md写，不好写或者写不了的就改就行
 
@@ -34,6 +39,14 @@ public class SecurityCheckUtil {
             return 2;
             //曾经有过尝试并且距离上一次请求不超过5分钟，返回尝试频率太高
         } else {
+            if(verifyCodeInfo.existsByIpAndDeviceID(ip,deviceID)==true) {
+                VerifyCodeInfo Now_ver = verifyCodeInfo.findByIpAndDeviceID(ip,deviceID);
+                if(Now_ver.getExpireTime().getTime() > timeNow.getTime()) {
+                    return 2;//说明当前验证码仍未过期，返回type2
+                } else {
+                    verifyCodeInfo.delete(Now_ver);
+                }
+            }
             return 0;
         }
     }

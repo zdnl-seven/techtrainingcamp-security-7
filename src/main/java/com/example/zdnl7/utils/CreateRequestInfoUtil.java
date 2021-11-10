@@ -18,7 +18,6 @@ public class CreateRequestInfoUtil {
     public void Create(String ip,String device_id) {
         reqInfo.save(
                 new RequestInfo(
-                        nowDate.getTime(),
                         0l,
                         ip,
                         device_id,

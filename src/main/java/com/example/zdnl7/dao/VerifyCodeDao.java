@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VerifyCodeDao extends JpaRepository<VerifyCodeInfo,Long> {
     VerifyCodeInfo findByIpAndDeviceID(String ip,String deviceID);
+    boolean existsByIpAndDeviceID(String ip,String deviceID);
 }
