@@ -71,18 +71,16 @@ public class zhenziSMS {
     private Map<String, Object> createVerificationCode() {
         HashMap<String, Object> map = new HashMap<>();
         //这个是榛子云短信平台用户中心下的短信管理的短信模板的模板id
-        map.put("templateId", "7232");
+        map.put("templateId", "7234");
         //生成验证码
         int pow = (int) Math.pow(10, codeLength - 1);
         String verificationCode = String.valueOf((int) (Math.random() * 9 * pow + pow));
         //随机生成messageId，验证验证码的时候，需要携带这个参数去取验证码
         String messageId = UUID.randomUUID().toString();
         map.put("messageId", messageId);
-        String[] templateParams = new String[2];
         //两个参数分别为验证码和过期时间
-        templateParams[0] = verificationCode;
-        templateParams[1] = String.valueOf(timeOut);
-        map.put("templateParams", templateParams);
+        map.put("code", verificationCode);
+        map.put("expireMinute", String.valueOf(timeOut));
         return map;
     }
 
@@ -90,7 +88,7 @@ public class zhenziSMS {
     public Map<String, Object> sendMessage(String phoneNumber, String clientIp) throws Exception {
         Map<String, Object> params = createVerificationCode();
         //发送手机目标（number字段不可修改）
-        params.put("number", phoneNumber);
+        params.put("phoneNumber", phoneNumber);
         //防止一个客户端多次刷验证码，防刷专用,这个clientIp只是个防刷标记，
         // 不一定是客户端ip，也可以是客户端登录的账号，或者能鉴权的属性
         if (StringUtils.isNotBlank(clientIp)) {
