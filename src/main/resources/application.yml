@@ -18,3 +18,11 @@ spring:
         min-idle: 0
     lettuce:
       shutdown-timeout: 0
+
+
+sms:
+  apiUrl: https://sms_developer.zhenzikj.com
+  appId: 110315
+  appSecret: b7001340-ea81-4488-8d4d-5ba54a24f1da
+  timeOut: 10
+  codeLength: 6

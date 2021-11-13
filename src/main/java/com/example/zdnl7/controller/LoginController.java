@@ -3,19 +3,23 @@ package com.example.zdnl7.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.zdnl7.config.exception.CommonJsonException;
+import com.example.zdnl7.config.system.zhenziSMS;
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.service.LoginService;
 import com.example.zdnl7.utils.CommonUtil;
+import com.example.zdnl7.utils.IpUtil;
+import com.example.zdnl7.utils.RandomUtil;
 import com.example.zdnl7.utils.constants.ConstUtil;
+import com.zhenzi.sms.ZhenziSmsClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@Controller
+@RestController
 public class LoginController {
     @Resource
     ConstUtil constUtil;
@@ -23,7 +27,6 @@ public class LoginController {
     @Resource
     LoginService loginService;
 
-    @ResponseBody
     @PostMapping("login_by_username")
     public LoginResult doLoginByUserName(@RequestBody(required = false) JSONObject requestJson) {
         CommonUtil.hasAllRequired(requestJson, "username,password,environment");
@@ -36,7 +39,6 @@ public class LoginController {
         return loginService.doLoginByUserName(username, password, ip, deviceId);
     }
 
-    @ResponseBody
     @PostMapping("login_by_phone")
     public LoginResult doLoginByPhone(@RequestBody JSONObject requestJson) {
 
@@ -48,5 +50,13 @@ public class LoginController {
         String deviceID = environment.get("device_id");
 
         return loginService.doLoginByPhone(phoneNumber, verifyCode, ip, deviceID);
+    }
+
+    @GetMapping("/test")
+    public JSONObject test(HttpServletRequest request) {
+        String ip = IpUtil.getIpAddr(request);
+        JSONObject info = new JSONObject();
+        info.put("ip", ip);
+        return CommonUtil.successJson(info);
     }
 }
