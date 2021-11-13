@@ -71,7 +71,7 @@ public class zhenziSMS {
     private Map<String, Object> createVerificationCode() {
         HashMap<String, Object> map = new HashMap<>();
         //这个是榛子云短信平台用户中心下的短信管理的短信模板的模板id
-        map.put("templateId", "3966");
+        map.put("templateId", "7232");
         //生成验证码
         int pow = (int) Math.pow(10, codeLength - 1);
         String verificationCode = String.valueOf((int) (Math.random() * 9 * pow + pow));
@@ -98,6 +98,7 @@ public class zhenziSMS {
         }
         String result = client.send(params);
         isSendSuccess success = JSONObject.parseObject(result, isSendSuccess.class);
+        System.out.println(result);
         if (success.getCode() == 0) {
             params.put("success", true);
         } else {
