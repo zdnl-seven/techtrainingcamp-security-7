@@ -1,19 +1,39 @@
 openapi: '3.0.2'
 info:
   title: zdnl
-  version: '1.0'
+  version: '0.6'
 servers:
-  - url: http://localhost:8082
+  - url: http://localhost:8082/api
 paths:
-  /login_username:
+  /login:
     post:
-      summary: 使用用户名登录
+      summary: 登录
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginByNameRequest'
+              oneOf:
+                - $ref: '#/components/schemas/LoginByNamePassRequest'
+                - $ref: '#/components/schemas/LoginByPhonePassRequest'
+                - $ref: '#/components/schemas/LoginByPhoneCodeRequest'
+      responses:
+        '200':
+          description: 正常运行
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  /login_by_username:
+    post:
+      summary: 使用用户名登录（兼容旧版）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginByNamePassRequest'
       responses:
         '200':
           description: 正常运行
@@ -22,15 +42,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
     
-  /login_phone:
+  /login_by_phone:
     post:
-      summary: 使用手机号登录
+      summary: 使用手机号登录（兼容旧版）
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginByPhoneRequest'
+              $ref: '#/components/schemas/LoginByPhoneCodeRequest'
       responses:
         '200':
           description: 正常运行
@@ -72,6 +92,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RegisterResponse'
+
+  /reset:
+      post:
+        summary: 重置密码
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetRequest'
+        responses:
+          '200':
+            description: 正常运行
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/RegisterResponse'
     
   /apply_code:
       post:
@@ -94,7 +131,7 @@ paths:
 
 components:
   schemas:
-    LoginByNameRequest:
+    LoginByNamePassRequest:
       type: object
       properties:
         user_name:
@@ -103,8 +140,18 @@ components:
           type: string
         environment:
           $ref: "#/components/schemas/Environment"
+
+    LoginByPhonePassRequest:
+      type: object
+      properties:
+        phone_number:
+          type: string
+        password:
+          type: string
+        environment:
+          $ref: "#/components/schemas/Environment"
     
-    LoginByPhoneRequest:
+    LoginByPhoneCodeRequest:
       type: object
       properties:
         phone_number:
@@ -129,6 +176,18 @@ components:
       properties:
         user_name:
           type: string
+        password:
+          type: string
+        phone_number:
+          type: string
+        verify_code:
+          type: string
+        environment:
+          $ref: "#/components/schemas/Environment"
+
+    ResetRequest:
+      type: object
+      properties:
         password:
           type: string
         phone_number:

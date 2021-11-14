@@ -13,7 +13,7 @@ public class RandomUtil {
         for (int i = 0; i < 6; i++) {
             // Math.random() 随机出0-1之间的实数，返回值是一个double 类型的
             num = (int) (Math.random() * 10);
-            numStr.append(String.valueOf(num));
+            numStr.append(num);
         }
         return numStr.toString();
     }

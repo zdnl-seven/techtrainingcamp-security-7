@@ -1,18 +1,11 @@
 package com.example.zdnl7.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.zdnl7.config.exception.CommonJsonException;
-import com.example.zdnl7.config.system.zhenziSMS;
 import com.example.zdnl7.model.LoginResult;
 import com.example.zdnl7.service.LoginService;
+import com.example.zdnl7.utils.ApiAdapter;
 import com.example.zdnl7.utils.CommonUtil;
 import com.example.zdnl7.utils.IpUtil;
-import com.example.zdnl7.utils.RandomUtil;
-import com.example.zdnl7.utils.constants.ConstUtil;
-import com.zhenzi.sms.ZhenziSmsClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,32 +13,41 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = {"http://127.0.0.1:8080", "http://localhost:8080"}, allowCredentials = "true", allowedHeaders = "*")
 public class LoginController {
-    @Resource
-    ConstUtil constUtil;
 
     @Resource
     LoginService loginService;
 
-    @PostMapping("login_by_username")
-    public LoginResult doLoginByUserName(@RequestBody(required = false) JSONObject requestJson) {
-        CommonUtil.hasAllRequired(requestJson, "username,password,environment");
-        Map<String, String> environment = (Map<String, String>) requestJson.get("environment");
-        String username = requestJson.getString("username");
-        String password = requestJson.getString("password");
-        String ip = environment.get("ip");
-        String deviceId = environment.get("device_id");
+    @PostMapping("login")
+    public LoginResult doLogin(@RequestBody JSONObject request, HttpServletRequest servletRequest) {
+        ApiAdapter.adapt(request, servletRequest);
+        if (request.containsKey("username")) {
+            return doLoginByUserName(request);
+        } else {
+            return doLoginByPhone(request);
+        }
+    }
 
-        return loginService.doLoginByUserName(username, password, ip, deviceId);
+    @PostMapping("login_by_name")
+    public LoginResult doLoginByUserName(JSONObject request) {
+        CommonUtil.hasAllRequired(request, "username,password,ip");
+        String username = request.getString("username");
+        String password = request.getString("password");
+        Map<String,String> environment = (Map<String, String>) request.get("environment");
+        String ip = environment.get("ip");
+        String deviceID = environment.get("device_id");
+
+        return loginService.doLoginByUserName(username, password, ip, deviceID);
     }
 
     @PostMapping("login_by_phone")
-    public LoginResult doLoginByPhone(@RequestBody JSONObject requestJson) {
+    public LoginResult doLoginByPhone(@RequestBody JSONObject request) {
 
-        CommonUtil.hasAllRequired(requestJson, "phone_number,verify_code,environment");
-        Map<String, String> environment = (Map<String, String>) requestJson.get("environment");
-        String phoneNumber = requestJson.getString("phone_number");
-        String verifyCode = requestJson.getString("verify_code");
+        CommonUtil.hasAllRequired(request, "phone_number,verify_code,environment");
+        String phoneNumber = request.getString("phone_number");
+        String verifyCode = request.getString("verify_code");
+        Map<String,String> environment = (Map<String, String>) request.get("environment");
         String ip = environment.get("ip");
         String deviceID = environment.get("device_id");
 

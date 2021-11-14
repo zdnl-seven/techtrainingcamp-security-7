@@ -44,7 +44,7 @@ public class LoginService {
     public LoginResult doLoginByUserName(String username, String password, String ip, String deviceID) {
 
 
-        if(reqInfo.existsByIp(ip)==false)createRequestInfoUtil.Create(ip,deviceID);
+        if (!reqInfo.existsByIp(ip)) createRequestInfoUtil.Create(ip, deviceID);
 
 
         LoginResult result = new LoginResult();
@@ -103,7 +103,7 @@ public class LoginService {
             UserInfo user = userInfo.findByPhone(phoneNumber);
             if (user == null) {
                 result.setMessage("手机号未注册");
-            } else if (verifyCodeInfo.findByIpAndDeviceID(ip,deviceID)==null|| !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
+            } else if (verifyCodeInfo.findByIpAndDeviceID(ip, deviceID) == null || !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
                 //效果等同于密码输入错误
                 ipInfoModifyUtil.Modify_Failed(ip);
             } else if (verifyCodeInfo.findByIpAndDeviceID(ip, deviceID) == null || !verifyCodeInfo.findByIpAndDeviceID(ip, deviceID).getVerifyCode().equals(verifyCode)) {
